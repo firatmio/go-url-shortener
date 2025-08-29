@@ -32,7 +32,7 @@ This project is a lightweight and fully functional URL shortener built with Go (
 1. **Clone the repository:**
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/firatmio/go-url-shortener
 cd url-shortener/backend
 ```
 
