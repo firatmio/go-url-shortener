@@ -1,74 +1,98 @@
-\--- README.md ---
-
 # Go URL Shortener
 
-A simple and fully functional URL shortener built with Go (Golang) backend, modernc SQLite driver, and a lightweight HTML/CSS/JavaScript frontend.
+![Go Version](https://img.shields.io/badge/Go-1.24.1-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
----
+## Overview
+
+This project is a lightweight and fully functional URL shortener built with Go (Golang) backend using the modernc SQLite driver. It includes a minimal frontend developed with HTML, CSS, and JavaScript, allowing users to shorten URLs and redirect via a simple web interface.
 
 ## Features
 
-* Shorten any URL to a 6-character short code
-* Redirect short URLs to the original URL
-* Lightweight web interface
-* Persistent storage using SQLite
-* Fully functional without CGO dependency
+* **Shorten URLs:** Generate concise 6-character short codes for any URL.
+* **Redirect Functionality:** Access the short URL to automatically redirect to the original link.
+* **Lightweight Frontend:** Minimal UI for inputting URLs and viewing results.
+* **Persistent Storage:** SQLite database stores URL mappings.
+* **No CGO Dependency:** Works out-of-the-box on Windows, Linux, and macOS.
 
----
+## Technologies Used
 
-## Setup Instructions
+* **Backend:** Go (Golang)
+* **Database:** SQLite (via `modernc.org/sqlite` driver)
+* **Frontend:** HTML, CSS, JavaScript
 
-1. Clone the repository:
+## Getting Started
+
+### Prerequisites
+
+* Go version 1.24.1 or higher ([Download Go](https://golang.org/dl/))
+
+### Installation & Running
+
+1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/yourusername/url-shortener.git
+git clone <your-repository-url>
 cd url-shortener/backend
 ```
 
-2. Install the SQLite driver:
+2. **Install dependencies:**
 
 ```bash
 go get modernc.org/sqlite
 ```
 
-3. Start the server:
+3. **Run the server:**
 
 ```bash
 go run .
 ```
 
-4. Open your browser at:
+Server will start at `http://localhost:8080`.
 
+4. **Access the application:**
+   Open your browser and navigate to `http://localhost:8080`.
+
+## API Endpoint
+
+| Method | Endpoint       | Description                                    |
+| ------ | -------------- | ---------------------------------------------- |
+| `POST` | `/api/shorten` | Generates a short URL for a given original URL |
+
+### Request Example
+
+```json
+{
+    "url": "https://example.com"
+}
 ```
-http://localhost:8080
+
+### Response Example
+
+```json
+{
+    "short_url": "http://localhost:8080/s/abc123"
+}
 ```
-
----
-
-## Usage
-
-* **Shorten a URL**: Enter the original URL in the input field and click the `Shorten` button.
-* **Redirect**: Click the generated short URL or visit `http://localhost:8080/s/<shortcode>` to be redirected to the original URL.
-
----
 
 ## Project Structure
 
 ```
-backend/      # Go backend files (API, database, handlers)
-frontend/     # HTML, CSS, and JavaScript frontend files
-README.md     # Project documentation
-LICENSE       # MIT License
+.
+├── backend/         # Go backend source code
+│   ├── main.go      # Main application entry point, server setup
+│   ├── handlers.go  # HTTP request handlers for API endpoints
+│   ├── db.go        # Database initialization and connection
+│   ├── go.mod       # Go module definitions
+│   └── go.sum       # Go module checksums
+├── frontend/        # Frontend files
+│   ├── index.html   # Main HTML page
+│   ├── style.css    # CSS for styling
+│   └── script.js    # JavaScript for frontend logic
+├── LICENSE          # Project License file
+└── README.md        # This file
 ```
-
----
-
-## Screenshots
-
-*Add screenshots of the web interface here to showcase your UI.*
-
----
 
 ## License
 
-This project is licensed under the [MIT License](./LICENSE).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
