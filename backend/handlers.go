@@ -58,18 +58,18 @@ func ShortenHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func RedirectHandler(w http.ResponseWriter, r *http.Request) {
-	code := r.URL.Path[1:]
-	if code == "" {
-		http.ServeFile(w, r, "../frontend/index.html")
-		return
-	}
+    code := r.URL.Path[len("/s/"):]
+    if code == "" {
+        http.ServeFile(w, r, "../frontend/index.html")
+        return
+    }
 
-	var original string
-	err := db.QueryRow("SELECT original FROM urls WHERE short = ?", code).Scan(&original)
-	if err != nil {
-		http.Error(w, "URL not found", http.StatusNotFound)
-		return
-	}
+    var original string
+    err := db.QueryRow("SELECT original FROM urls WHERE short = ?", code).Scan(&original)
+    if err != nil {
+        http.Error(w, "URL not found", http.StatusNotFound)
+        return
+    }
 
-	http.Redirect(w, r, original, http.StatusFound)
+    http.Redirect(w, r, original, http.StatusFound)
 }

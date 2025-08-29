@@ -15,16 +15,17 @@
 
     <script>
         async function shortenURL() {
-            const url = document.getElementById("urlInput").value;
-            const res = await fetch("/api/shorten", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ url })
-            });
-            const data = await res.json();
-            document.getElementById("result").innerHTML =
-                `Short URL: <a href="${data.short_url}" target="_blank">${data.short_url}</a>`;
-        }
+                const url = document.getElementById("urlInput").value;
+                const res = await fetch("/api/shorten", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ url })
+                });
+                const data = await res.json();
+
+                document.getElementById("result").innerHTML =
+                 `Short URL: <a href="/s/${data.short_url.split("/").pop()}" target="_blank">http://localhost:8080/s/${data.short_url.split("/").pop()}</a>`;
+            }
     </script>
 </body>
 
